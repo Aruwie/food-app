@@ -5,4 +5,20 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum FoodType {
+  upf
+  fresh
+}
+
+model Food {
+  id          Int       @id @default(autoincrement())
+  name        String
+  ingredients String
+  description String
+  type        FoodType
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
